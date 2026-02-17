@@ -1,94 +1,252 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ไทยปนลาว สาวแว่น | รวมลิงก์และสินค้า</title>
+    <title>ไทยปนลาว สาวแว่น | Social Link</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Sarabun', 'Inter', 'sans-serif'], // ใช้ Sarabun เป็นหลักสำหรับไทย
-                    },
-                    colors: {
-                        primary: '#111111',
-                        secondary: '#666666',
-                        accent: '#F3F4F6', // สีเทาอ่อนๆ
-                        shopee: '#EE4D2D',
-                        lazada: '#0f146d',
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
+        :root {
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-sub: #666666;
+            --accent-color: #2c3e50; /* สีธีมหลัก */
+            --shopee: #ee4d2d;
+            --lazada: #0f146d;
+            --line: #06c755;
+            --facebook: #1877f2;
         }
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        /* Gradient Text */
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(to right, #111, #555);
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* ขนาดเท่าจอมือถือ */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 40px;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        .profile-img-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .profile-bio {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+
+        /* Links Section */
+        .links-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            background-color: var(--card-bg);
+            padding: 16px 20px;
+            border-radius: 50px; /* ปุ่มทรงแคปซูล */
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #eee;
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .link-icon {
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .link-text {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* สีเฉพาะของแต่ละปุ่ม */
+        .shopee-icon { color: var(--shopee); }
+        .lazada-icon { color: var(--lazada); }
+        .line-icon { color: var(--line); }
+        .fb-icon { color: var(--facebook); }
+
+        /* Social Footer */
+        .social-footer {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            font-size: 1.5rem;
+            color: #aaa;
+            transition: color 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Fix */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                background-color: #fff; /* มือถือให้พื้นขาวไปเลย */
+            }
+            .link-card {
+                padding: 14px 18px;
+            }
         }
     </style>
 </head>
-<body class="bg-white text-gray-800 antialiased selection:bg-black selection:text-white">
+<body>
 
-    <nav class="fixed w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-100 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-5xl">
-            <a href="#" class="text-xl font-bold tracking-tight text-primary flex items-center gap-2">
-                <span class="bg-black text-white px-2 py-1 rounded text-sm">SW</span>
-                ไทยปนลาว
-            </a>
-            
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-secondary">
-                <a href="#home" class="hover:text-primary transition-colors">หน้าหลัก</a>
-                <a href="#shop" class="hover:text-primary transition-colors">ร้านค้า</a>
-                <a href="#content" class="hover:text-primary transition-colors">คอนเทนต์</a>
-                <a href="#contact" class="hover:text-primary transition-colors">ติดต่อ</a>
-            </div>
-        </div>
-    </nav>
-
-    <section id="home" class="pt-32 pb-20 px-6 min-h-[80vh] flex flex-col justify-center items-center text-center">
-        <div class="fade-in-up max-w-3xl mx-auto">
-            <div class="relative w-32 h-32 mx-auto mb-6 group">
-                <div class="absolute inset-0 bg-gray-200 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+    <div class="container">
+        
+        <div class="profile-section">
+            <div class="profile-img-wrapper">
                 <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                     alt="ไทยปนลาว สาวแว่น" 
-                     class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg grayscale group-hover:grayscale-0 transition duration-500">
-                </div>
-            
-            <h1 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight">
-                ไทยปนลาว <span class="text-gradient">สาวแว่น</span>
-            </h1>
-            <p class="text-lg text-gray-500 mb-8 max-w-xl mx-auto font-light">
-                สินค้าทำมือ กระเป๋าผ้าสไตล์มินิมอล และไลฟ์สไตล์บ้านๆ <br class="hidden md:block">
-                ฝากอุดหนุนและเป็นกำลังใจให้สาวแว่นด้วยนะคะ
+                     alt="Profile" class="profile-img">
+            </div>
+            <h1 class="profile-name">ไทยปนลาว สาวแว่น</h1>
+            <p class="profile-bio">
+                ชีวิตประจำวัน ปลูกผัก ทำอาหาร ทำงานบ้าน<br>
+                ในแบบสาวแว่น ไทยปนลาว และครอบครัว
             </p>
+        </div>
+
+        <div class="links-container">
             
-            <div class="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
-                <a href="https://shope.ee/7f85HuPv1A" target="_blank" 
-                   class="flex items-center justify-center gap-2 bg-[#EE4D2D] text-white px-8 py-3 rounded-full font-medium hover:bg-orange-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.866 10.375l-1.636-2.502c-.225-.33-.674-.427-1.004-.211l-3.327 2.152-3.153-6.685c-.156-.341-.54-.509-.882-.365l-6.38 2.898c-.342.144-.509.54-.365.882l2.365 5.097-3.927 2.54c-.33.225-.427.674-.211 1.004l1.636 2.502c.162.249.462.366.75.294v4.035c0 1.104.896 2 2 2h10c1.104 0 2-.896 2-2v-4.035c.288.072.588-.045.75-.294z"/></svg>
-                    Shopee
-                </a>
-                <a href="https://s.lazada.co.th/l.cD1L" target="_blank" 
-                   class="flex items-center justify-center gap-2 bg-[#0f146d] text-white px-8 py-3 rounded-full font-medium hover:bg-blue-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.4
+            <a href="https://shope.ee/7f85HuPv1A" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-bag-shopping link-icon shopee-icon"></i>
+                    <span class="link-text">Shopee ไทยปนลาว</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #ddd; font-size: 0.8rem;"></i>
+            </a>
+
+            <a href="https://s.lazada.co.th/l.cD1L" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-cart-shopping link-icon lazada-icon"></i>
+                    <span class="link-text">Lazada ไทยปนลาว</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #ddd; font-size: 0.8rem;"></i>
+            </a>
+
+            <a href="https://line.me/R/ti/p/@drjel" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-brands fa-line link-icon line-icon"></i>
+                    <span class="link-text">สินค้า Dr.Jel (Line: @drjel)</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #ddd; font-size: 0.8rem;"></i>
+            </a>
+
+            <a href="https://line.me/R/ti/p/@tempe" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-brands fa-line link-icon line-icon"></i>
+                    <span class="link-text">สินค้าเต็มเป (Line: @tempe)</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #ddd; font-size: 0.8rem;"></i>
+            </a>
+
+            <a href="https://line.me/R/ti/p/@thpl" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-bullhorn link-icon" style="color: #333;"></i>
+                    <span class="link-text">ติดต่องานโฆษณา (@thpl)</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #ddd; font-size: 0.8rem;"></i>
+            </a>
+
+             <a href="https://line.me/R/ti/p/@tclip" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-solid fa-video link-icon" style="color: #555;"></i>
+                    <span class="link-text">คอร์สสอนทำคลิป (@tclip)</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #ddd; font-size: 0.8rem;"></i>
+            </a>
+
+            <a href="https://www.facebook.com/mund.itsgood" target="_blank" class="link-card">
+                <div class="link-content">
+                    <i class="fa-brands fa-facebook link-icon fb-icon"></i>
+                    <span class="link-text">Facebook Fanpage</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #ddd; font-size: 0.8rem;"></i>
+            </a>
+
+        </div>
+
+        <footer class="social-footer">
+            <a href="https://www.facebook.com/mund.itsgood" target="_blank" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.youtube.com/results?search_query=ไทยปนลาว+สาวแว่น" target="_blank" class="social-link"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+        </footer>
+
+    </div>
+
+</body>
+</html>
